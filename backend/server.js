@@ -49,24 +49,13 @@ io.on("connection", (socket) => {
     onlineUsers.set(userId, socket.id);
      io.emit("online-users", Array.from(onlineUsers.keys())); // 🔄 broadcast
   });
-   socket.on("call-user", ({ to, from, signal }) => {
-    io.to(userSocketMap[to]).emit("incoming-call", { from, signal });
-  });
-  socket.on("call-rejected", ({ to }) => {
-  const targetSocketId = onlineUsers.get(to);
-  if (targetSocketId) {
-    io.to(targetSocketId).emit("call-rejected");
-  }
-});
+  
+  
 socket.on("delete-msg", ({ messageId }) => {
   io.emit("msg-deleted", { messageId }); // or emit only to specific users
 });
 
 
-
-  socket.on("accept-call", ({ to, from, signal }) => {
-    io.to(userSocketMap[to]).emit("call-accepted", { from, signal });
-  });
 
   socket.on("typing", ({ to, from }) => {
     const sendTo = onlineUsers.get(to);
