@@ -1,0 +1,74 @@
+.profile {
+  height: 100vh; /* Full viewport height */
+  width:100vw;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+.profileCard {
+  width: 550px;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 2px solid #ccc;
+}
+.uploadSection{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  gap:20px;
+  /* border:2px solid black; */
+}
+.inputArea{
+  /* border:2px solid black; */
+  margin:auto;
+}
+.uploadForm {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uploadForm input[type="file"] {
+  padding: 0.5rem;
+}
+
+.uploadForm button {
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.uploadForm button:disabled {
+  background-color: gray;
+}
+.hiddenInput {
+  display: none;
+  width:20px;
+  /* border:2px solid black; */
+}
+
+.attachmentIcon {
+  font-size: 2.5rem;
+  cursor: pointer;
+  margin-right: 10px;
+  user-select: none;
+  width:40px;
+  /* border:2px solid black; */
+}
