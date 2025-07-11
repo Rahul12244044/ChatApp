@@ -5,8 +5,7 @@ export const sendMessage = async (req, res) => {
     const { receiver, content,file } = req.body;
     console.log("req.body");
     console.log(req.body);
-    const sender = req.user.id; // comes from auth middleware
-    // inside POST /api/messages route
+    const sender = req.user.id; 
 if (req.user.id === req.body.receiver) {
   return res.status(400).json({ error: "Cannot send message to yourself." });
 }

@@ -3,11 +3,11 @@ export const getAllUsers = async (req, res) => {
   try {
     const users = await userModel
       .find({ _id: { $ne: req.user.id } })
-      .select("username email profileImage createdAt"); // ✅ include what’s needed
+      .select("username email profileImage createdAt");
 
     res.json(users);
   } catch (err) {
-    console.error("❌ Failed to fetch users:", err);
+    console.error("Failed to fetch users:", err);
     res.status(500).json({ msg: "Server error" });
   }
 };

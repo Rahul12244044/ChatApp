@@ -10,7 +10,7 @@ const Profile = () => {
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
-  // ✅ Use sessionStorage for user
+  
   const userData = sessionStorage.getItem("user");
   const loggedInUser = userData ? JSON.parse(userData) : null;
   const token = sessionStorage.getItem("token");
@@ -48,14 +48,14 @@ const Profile = () => {
         },
       });
 
-      alert("✅ Profile picture updated!");
+      alert("Profile picture updated!");
       const updatedUser = res.data.user;
 
-      // ✅ Save updated user to sessionStorage
+     
       sessionStorage.setItem("user", JSON.stringify(updatedUser));
       navigate("/");
     } catch (err) {
-      console.error("❌ Error uploading:", err);
+      console.error("Error uploading:", err);
       alert("Upload failed.");
     } finally {
       setUploading(false);

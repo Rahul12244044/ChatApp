@@ -31,7 +31,7 @@ const ChatBox = ({ user }) => {
       );
       socket.emit("mark-as-seen", { from: loggedInUser._id, to: user._id });
     } catch (err) {
-      console.error("❌ Error marking messages as seen", err);
+      console.error("Error marking messages as seen", err);
     }
   };
 
@@ -50,7 +50,7 @@ const ChatBox = ({ user }) => {
       setMessages((prev) => prev.filter((msg) => msg._id !== messageId));
       socket.emit("delete-msg", { messageId });
     } catch (err) {
-      console.error("❌ Failed to delete message:", err);
+      console.error("Failed to delete message:", err);
     }
   };
 
@@ -101,7 +101,7 @@ const ChatBox = ({ user }) => {
     });
     setImageLoading(loadingMap);
         } catch (err) {
-          console.error("❌ Error fetching messages:", err);
+          console.error("Error fetching messages:", err);
         }
       };
 
@@ -150,7 +150,7 @@ const ChatBox = ({ user }) => {
         const res = await axios.post("http://localhost:5000/api/upload/file", formData);
         fileUrl = res.data.fileUrl;
       } catch (err) {
-        console.error("❌ File upload failed:", err);
+        console.error("File upload failed:", err);
         return;
       }
     }
@@ -175,7 +175,7 @@ const ChatBox = ({ user }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
     } catch (err) {
-      console.error("❌ Error sending message:", err);
+      console.error("Error sending message:", err);
     }
   };
 
@@ -199,7 +199,7 @@ const ChatBox = ({ user }) => {
   return (
     <div className={styles.chatBox}>
       {isSelfChat ? (
-        <div className={styles.warning}>⚠️ You cannot chat with yourself.</div>
+        <div className={styles.warning}>You cannot chat with yourself.</div>
       ) : (
         <>
           <h3>Chat with {user.username}</h3>

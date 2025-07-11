@@ -1,4 +1,3 @@
-// src/middlewares/fileUpload.middleware.js
 import multer from "multer";
 import path from "path";
 

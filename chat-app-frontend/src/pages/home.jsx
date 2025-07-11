@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/home.module.css";
@@ -22,24 +21,21 @@ const Home = () => {
 
   return () => socket.off("online-users");
 }, []);
- 
-
-  // ✅ Setup socket connection & real-time avatar listener
   useEffect(() => {
     if (!loggedInUser) return;
 
     if (!socket.connected) {
       socket.connect();
-      console.log("✅ socket connected");
+      console.log("socket connected");
     }
 
     socket.emit("add-user", loggedInUser._id);
-    console.log("✅ add-user emitted for:", loggedInUser._id);
+    console.log("add-user emitted for:", loggedInUser._id);
 
     const handleProfileUpdate = ({ userId, avatar }) => {
       console.log("handleProfileUpdate: ");
       console.log(avatar);
-      console.log("🖼️ profile-updated received:", userId, avatar);
+      console.log("profile-updated received:", userId, avatar);
       setUsers((prev) =>
         prev.map((u) =>
           u._id === userId ? { ...u, profileImage: avatar } : u
@@ -52,16 +48,16 @@ const Home = () => {
     return () => {
       socket.off("profile-updated", handleProfileUpdate);
     };
-  }, []); // ✅ runs once
+  }, []); 
 
-  // Prevent selecting yourself in chat
+
   useEffect(() => {
     if (activeChatUser && activeChatUser._id === loggedInUser._id) {
       setActiveChatUser(null);
     }
   }, [activeChatUser, loggedInUser]);
 
-  // Fetch users from backend
+
   useEffect(() => {
     if (!token || !loggedInUser) return;
     const fetchUsers = async () => {

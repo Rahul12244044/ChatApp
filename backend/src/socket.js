@@ -1,5 +1,5 @@
 
-// src/socket.js
+
 
 let ioInstance = null;
 
@@ -9,7 +9,7 @@ export const setSocketIO = (io) => {
 
 export const getSocketIO = () => {
   if (!ioInstance) {
-    throw new Error("❌ Socket.io instance not set. Call setSocketIO(io) first.");
+    throw new Error("Socket.io instance not set. Call setSocketIO(io) first.");
   }
   return ioInstance;
 };

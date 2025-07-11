@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -15,8 +14,6 @@ const Login = () => {
   e.preventDefault();
   try {
     const res = await axios.post("http://localhost:5000/api/user/login", form);
-
-    // ✅ Save token and user
     sessionStorage.setItem("token", res.data.token);
     sessionStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("token", res.data.token);

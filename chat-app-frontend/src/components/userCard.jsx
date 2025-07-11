@@ -1,4 +1,3 @@
-// src/components/UserCard.jsx
 import styles from "../styles/userCard.module.css";
 
 const UserCard = ({ user, isOnline, onClick }) => {

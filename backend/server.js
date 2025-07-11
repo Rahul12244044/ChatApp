@@ -38,21 +38,20 @@ app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 connectDB();
 
 const PORT = process.env.PORT || 5000;
-httpServer.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 const onlineUsers = new Map();
 
 
 io.on("connection", (socket) => {
-  // ✅ Add user to online users
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
-     io.emit("online-users", Array.from(onlineUsers.keys())); // 🔄 broadcast
+     io.emit("online-users", Array.from(onlineUsers.keys())); 
   });
   
   
 socket.on("delete-msg", ({ messageId }) => {
-  io.emit("msg-deleted", { messageId }); // or emit only to specific users
+  io.emit("msg-deleted", { messageId }); 
 });
 
 
@@ -66,7 +65,7 @@ socket.on("delete-msg", ({ messageId }) => {
   socket.on("mark-as-seen", ({ from, to }) => {
   const receiverSocketId = onlineUsers.get(to);
   if (receiverSocketId) {
-    io.to(receiverSocketId).emit("mark-as-seen", { from, to }); // ✅ send both
+    io.to(receiverSocketId).emit("mark-as-seen", { from, to }); 
   }
 });
 
@@ -76,36 +75,31 @@ socket.on("delete-msg", ({ messageId }) => {
       io.to(sendTo).emit("stop-typing", { from });
     }
   });
-
-
-  // ✅ Listen for send-msg from one user
   socket.on("send-msg", (data) => {
   const sendToSocketId = onlineUsers.get(data.to);
-  const senderSocketId = onlineUsers.get(data.from); // <-- Add this line
+  const senderSocketId = onlineUsers.get(data.from); 
 
-  // Emit to receiver
   if (sendToSocketId) {
     io.to(sendToSocketId).emit("msg-receive", {
       from: data.from,
       to: data.to,
       content: data.content,
-      file: data.file, // ✅ include file
+      file: data.file, 
     });
   }
 
-  // ✅ Also emit back to sender (optional but helpful)
+
   if (senderSocketId) {
     io.to(senderSocketId).emit("msg-receive", {
       from: data.from,
       to: data.to,
       content: data.content,
-      file: data.file, // ✅ include file
+      file: data.file, 
     });
   }
 
 });
 
-  // (optional) handle disconnect
   socket.on("disconnect", () => {
     for (let [key, value] of onlineUsers.entries()) {
       if (value === socket.id) {
