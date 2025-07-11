@@ -7,7 +7,7 @@ const UserCard = ({ user, isOnline, onClick }) => {
         <img
           src={
             user.profileImage
-              ? `http://localhost:5000${user.profileImage}`
+              ? `${import.meta.env.VITE_API_URL}${user.profileImage}`
               : "/default-avatar.png"
           }
           alt="avatar"

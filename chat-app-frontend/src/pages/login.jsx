@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const res = await axios.post("http://localhost:5000/api/user/login", form);
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/login`, form);
     sessionStorage.setItem("token", res.data.token);
     sessionStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("token", res.data.token);
