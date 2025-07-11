@@ -107,6 +107,6 @@ socket.on("delete-msg", ({ messageId }) => {
         break;
       }
     }
-        io.emit("online-users", Array.from(onlineUsers.keys())); // 🔄 broadcast
+        io.emit("online-users", Array.from(onlineUsers.keys())); 
   });
 });
