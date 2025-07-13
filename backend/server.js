@@ -19,10 +19,15 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173", // local dev
+      "https://chat-app-rcrr.vercel.app" // ✅ deployed frontend
+    ],
     methods: ["GET", "POST"],
-  },
+    credentials: true
+  }
 });
+
 setSocketIO(io);
 
 app.use(cors());
