@@ -15,7 +15,7 @@ export default defineConfig({
   define: {
     global: 'globalThis',
     process: {
-      env: {},
+      env: {}, // allow process.env access
     },
   },
   optimizeDeps: {
@@ -25,5 +25,9 @@ export default defineConfig({
     rollupOptions: {
       plugins: [rollupNodePolyFill()],
     },
+    outDir: 'dist',
   },
+  server: {
+    port: 3000,
+  }
 });
