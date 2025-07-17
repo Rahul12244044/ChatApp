@@ -28,9 +28,21 @@ const io = new Server(httpServer, {
   }
 });
 
+
+
 setSocketIO(io);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // Vite local
+      "http://localhost:3000", // CRA local (just in case)
+      "https://chat-app-rcrr.vercel.app", // your deployed frontend
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/user", authRouter);

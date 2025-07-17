@@ -107,17 +107,21 @@ const ChatBox = ({ user }) => {
 
       fetchMessages();
 
-      const handleReceive = (msg) => {
-        if (
-          (msg.from === loggedInUser._id && msg.to === user._id) ||
-          (msg.to === loggedInUser._id && msg.from === user._id)
-        ) {
-          setMessages((prev) => [...prev, msg]);
-          if (msg.to === loggedInUser._id && msg.from === user._id) {
-            markMessagesAsSeen();
-          }
-        }
-      };
+     const handleReceive = (msg) => {
+  const isCurrentChat =
+    (msg.from === loggedInUser._id && msg.to === user._id) ||
+    (msg.to === loggedInUser._id && msg.from === user._id);
+
+  if (isCurrentChat) {
+    setMessages((prev) => [...prev, msg]);
+
+    // Only mark as seen if this user is the receiver
+    if (msg.to === loggedInUser._id && msg.from === user._id) {
+      markMessagesAsSeen();
+    }
+  }
+};
+
 
       const handleTyping = ({ from }) => {
         if (from === user._id) setTypingStatus(true);
