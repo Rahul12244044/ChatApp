@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "chat-app-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "chat-app-frontend/dist"
-      }
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
@@ -14,5 +11,7 @@
       "src": "/(.*)",
       "dest": "chat-app-frontend/dist/index.html"
     }
-  ]
+  ],
+  "buildCommand": "cd chat-app-frontend && npm install && npm run build",
+  "outputDirectory": "chat-app-frontend/dist"
 }
