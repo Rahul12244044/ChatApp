@@ -2,16 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "chat-app-frontend/package.json",
-      "use": "@vercel/static-build"
+      "src": "chatApplication/chat-app-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "chatApplication/chat-app-frontend/dist"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "chat-app-frontend/dist/index.html"
+      "dest": "chatApplication/chat-app-frontend/dist/index.html"
     }
-  ],
-  "buildCommand": "cd chat-app-frontend && npm install && npm run build",
-  "outputDirectory": "chat-app-frontend/dist"
+  ]
 }
