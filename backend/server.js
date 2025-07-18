@@ -32,16 +32,16 @@ const io = new Server(httpServer, {
 
 setSocketIO(io);
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173", // Vite local
-      "http://localhost:3000", // CRA local (just in case)
-      "https://chat-app-rcrr.vercel.app", // your deployed frontend
-    ],
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  "https://chat-app-rcrr.vercel.app", // ✅ your Vercel frontend
+  "http://localhost:5173"             // ✅ for local testing
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 
 app.use(express.json());
 
