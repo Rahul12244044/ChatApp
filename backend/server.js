@@ -27,6 +27,11 @@ app.use(cors({
   origin: allowedOrigins,
   credentials: true,
 }));
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 
 const io = new Server(httpServer, {
   cors: {
