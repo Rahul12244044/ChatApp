@@ -143,48 +143,58 @@ const ChatBox = ({ user }) => {
   }, [user._id, isSelfChat, loggedInUser._id, token]);
 
   const handleSend = async () => {
-    if ((!newMsg.trim() && !selectedFile) || isSelfChat) return;
-    let fileUrl = null;
+  if ((!newMsg.trim() && !selectedFile) || isSelfChat) return;
+  let fileUrl = null;
 
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
-
-      try {
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}api/upload/file`, formData);
-        fileUrl = res.data.fileUrl;
-      } catch (err) {
-        console.error("File upload failed:", err);
-        return;
-      }
-    }
-
-    const messageData = {
-      to: user._id,
-      from: loggedInUser._id,
-      content: newMsg,
-      timestamp: Date.now(),
-      seen: false,
-      file: fileUrl,
-    };
-    socket.emit("send-msg", messageData);
-    setNewMsg("");
-    setSelectedFile(null);
-    socket.emit("stop-typing", { to: user._id, from: loggedInUser._id });
+  if (selectedFile) {
+    const formData = new FormData();
+    formData.append("file", selectedFile);
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}api/messages`,
-        { receiver: user._id, content: newMsg, file: fileUrl },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}api/upload/file`, formData);
+      fileUrl = res.data.fileUrl;
     } catch (err) {
-      console.error("Error sending message:", err);
+      console.error("File upload failed:", err);
+      return;
     }
+  }
+
+  const messageData = {
+    to: user._id,
+    from: loggedInUser._id,
+    content: newMsg,
+    timestamp: Date.now(),
+    seen: false,
+    file: fileUrl,
   };
+
+  // ✅ Update sender's chat immediately
+  setMessages((prev) => [...prev, messageData]);
+
+  // Clear input & file
+  setNewMsg("");
+  setSelectedFile(null);
+  socket.emit("stop-typing", { to: user._id, from: loggedInUser._id });
+
+  // ✅ Emit via socket
+  socket.emit("send-msg", messageData);
+
+  try {
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}api/messages`,
+      { receiver: user._id, content: newMsg, file: fileUrl },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (err) {
+    console.error("Error sending message:", err);
+  }
+};
+
 
   const handleInputChange = (e) => {
     setNewMsg(e.target.value);
+    console.log("user_id");
+    console.log(user._id);
     if (!isTyping) {
       setIsTyping(true);
       socket.emit("typing", { to: user._id, from: loggedInUser._id });
