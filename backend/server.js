@@ -20,8 +20,9 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: [
-      "http://localhost:5173", // local dev
-      "https://chat-app-rcrr.vercel.app" // ✅ deployed frontend
+      "https://chat-app-rcrr.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:3000"
     ],
     methods: ["GET", "POST"],
     credentials: true
@@ -33,8 +34,9 @@ const io = new Server(httpServer, {
 setSocketIO(io);
 
 const allowedOrigins = [
-  "https://chat-app-rcrr.vercel.app", // ✅ your Vercel frontend
-  "http://localhost:5173"             // ✅ for local testing
+  "https://chat-app-rcrr.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:3000"
 ];
 
 app.use(cors({
