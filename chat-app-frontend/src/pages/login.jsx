@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "../styles/login.module.css";
 
 const Login = () => {
-    console.log("VITE_API_URL:", import.meta.env.VITE_API_URL); // ✅ Add here
+  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL); // ✅ Add here
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -12,9 +12,12 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
+    console.log("handleSubmit: ");
+    console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
   e.preventDefault();
   try {
     const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/login`, form, { withCredentials: true });
+    console.log(res);
     sessionStorage.setItem("token", res.data.token);
     sessionStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("token", res.data.token);
@@ -23,7 +26,8 @@ const Login = () => {
     console.log(res);
     window.location.href = "/";
   } catch (err) {
-    alert(err.response?.data?.msg || "Login failed");
+    console.log(err);
+    
   }
 };
 

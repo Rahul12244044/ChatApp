@@ -16,12 +16,6 @@ dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
-
-
-
-
-
-
 const allowedOrigins = [
  "https://talkrandoms.netlify.app/login",
   "https://chatapp-1-1gc6.onrender.com",
