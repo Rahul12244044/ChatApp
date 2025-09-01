@@ -43,8 +43,8 @@ setSocketIO(io);
 app.use(express.json());
 
 app.use("/api/user", authRouter);
-app.use("/api/messages", messageRouter);
-app.use("/api/users", userRouter);
+app.use("api/messages",messageRouter);
+app.use("api/users", userRouter);
 app.use("/api/upload", uploadRouter);
 
 app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
