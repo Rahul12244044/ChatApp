@@ -16,7 +16,7 @@ const Login = () => {
     console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
   e.preventDefault();
   try {
-    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/login`, form, { withCredentials: true });
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}api/user/login`, form, { withCredentials: true });
     console.log(res);
     sessionStorage.setItem("token", res.data.token);
     sessionStorage.setItem("user", JSON.stringify(res.data.user));
