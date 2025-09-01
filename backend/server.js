@@ -20,7 +20,7 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: [
-      "https://chat-app-rcrr.vercel.app",
+      "https://chatapp-1-1gc6.onrender.com/",
       "http://localhost:5173",
       "http://localhost:3000"
     ],
@@ -34,7 +34,7 @@ const io = new Server(httpServer, {
 setSocketIO(io);
 
 const allowedOrigins = [
-  "https://chat-app-rcrr.vercel.app",
+  "https://chatapp-1-1gc6.onrender.com/",
   "http://localhost:5173",
   "http://localhost:3000"
 ];
