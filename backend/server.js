@@ -17,24 +17,14 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 
-const io = new Server(httpServer, {
-  cors: {
-    origin: [
-      "https://chatapp-1-1gc6.onrender.com/",
-      "http://localhost:5173",
-      "http://localhost:3000"
-    ],
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
 
 
 
-setSocketIO(io);
+
 
 const allowedOrigins = [
-  "https://chatapp-1-1gc6.onrender.com/",
+ "https://talkrandoms.netlify.app/login",
+  "https://chatapp-1-1gc6.onrender.com",
   "http://localhost:5173",
   "http://localhost:3000"
 ];
@@ -43,7 +33,14 @@ app.use(cors({
   origin: allowedOrigins,
   credentials: true,
 }));
-
+const io = new Server(httpServer, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
+  }
+});
+setSocketIO(io);
 
 app.use(express.json());
 

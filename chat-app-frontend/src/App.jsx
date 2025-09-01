@@ -16,7 +16,7 @@ const App = () => {
     }
     return sessionToken;
   });
-
+  console.log("token: ");
   return (
     <Routes>
       <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
