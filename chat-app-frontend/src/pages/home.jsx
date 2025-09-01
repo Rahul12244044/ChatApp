@@ -62,7 +62,7 @@ const Home = () => {
     if (!token || !loggedInUser) return;
     const fetchUsers = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}api/users`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const filteredUsers = res.data.filter(
