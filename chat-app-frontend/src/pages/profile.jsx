@@ -41,7 +41,7 @@ const Profile = () => {
 
     try {
       setUploading(true);
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload/profile-pic`, formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}api/upload/profile-pic`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -63,8 +63,8 @@ const Profile = () => {
   };
 
   const avatarUrl = loggedInUser?.avatar
-    ? `${import.meta.env.VITE_API_URL}/${loggedInUser.avatar}`
-    : "/default-avatar.png";
+    ? `${import.meta.env.VITE_API_URL}${loggedInUser.avatar}`
+    : "default-avatar.png";
 
   return (
     
