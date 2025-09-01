@@ -25,7 +25,7 @@ const ChatBox = ({ user }) => {
   const markMessagesAsSeen = async () => {
     try {
       await axios.patch(
-        `${import.meta.env.VITE_API_URL}/api/messages/mark-seen/${user._id}`,
+        `${import.meta.env.VITE_API_URL}api/messages/mark-seen/${user._id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -44,7 +44,7 @@ const ChatBox = ({ user }) => {
 
   const handleDeleteMessage = async (messageId) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/messages/${messageId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}api/messages/${messageId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessages((prev) => prev.filter((msg) => msg._id !== messageId));
@@ -88,7 +88,7 @@ const ChatBox = ({ user }) => {
     if (!isSelfChat) {
       const fetchMessages = async () => {
         try {
-          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/${user._id}`, {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}api/messages/${user._id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           
@@ -151,7 +151,7 @@ const ChatBox = ({ user }) => {
       formData.append("file", selectedFile);
 
       try {
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload/file`, formData);
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}api/upload/file`, formData);
         fileUrl = res.data.fileUrl;
       } catch (err) {
         console.error("File upload failed:", err);
@@ -174,7 +174,7 @@ const ChatBox = ({ user }) => {
 
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/messages`,
+        `${import.meta.env.VITE_API_URL}api/messages`,
         { receiver: user._id, content: newMsg, file: fileUrl },
         { headers: { Authorization: `Bearer ${token}` } }
       );
