@@ -113,6 +113,7 @@ const ChatBox = ({ user }) => {
     (msg.to === loggedInUser._id && msg.from === user._id);
 
   if (isCurrentChat) {
+    if (msg.from === loggedInUser._id) return;
     setMessages((prev) => [...prev, msg]);
 
     // Only mark as seen if this user is the receiver
@@ -169,7 +170,7 @@ const ChatBox = ({ user }) => {
   };
 
   // ✅ Update sender's chat immediately
-  setMessages((prev) => [...prev, messageData]);
+  // setMessages((prev) => [...prev, messageData]);
 
   // Clear input & file
   setNewMsg("");
