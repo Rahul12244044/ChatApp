@@ -1,34 +1,38 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import rollupNodePolyFill from "rollup-plugin-node-polyfills";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      stream: 'stream-browserify',
-      buffer: 'buffer',
-      crypto: 'crypto-browserify',
-      process: 'process/browser',
+      stream: "stream-browserify",
+      buffer: "buffer",
+      crypto: "crypto-browserify",
+      process: "process/browser",
     },
   },
   define: {
-    global: 'globalThis',
+    global: "globalThis",
     process: {
       env: {}, // allow process.env access
     },
   },
   optimizeDeps: {
-    include: ['buffer', 'process', 'stream-browserify', 'crypto-browserify'],
+    include: ["buffer", "process", "stream-browserify", "crypto-browserify"],
   },
   build: {
     rollupOptions: {
       plugins: [rollupNodePolyFill()],
     },
-    outDir: 'dist',
+    outDir: "dist",
   },
   server: {
     port: 3000,
-    historyApiFallback: true, // 👈 add this
-  }
+    open: true, // automatically open browser
+    fs: {
+      strict: false,
+    },
+  },
+  base: "/", // 👈 important for client-side routing like /login
 });
