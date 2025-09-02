@@ -47,6 +47,8 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("profile: ");
+      console.log(res);
 
       alert("Profile picture updated!");
       const updatedUser = res.data.user;
