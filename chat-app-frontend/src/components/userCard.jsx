@@ -2,14 +2,13 @@ import styles from "../styles/userCard.module.css";
 
 const UserCard = ({ user, isOnline, onClick }) => {
   console.log("user: ");
-  console.log(user);
   return (
     <div className={styles.userCard} onClick={onClick}>
       <div className={styles.avatarWrapper}>
         <img
           src={
             user.profileImage
-              ? `${user.profileImage}`
+              ? `${import.meta.env.VITE_API_URL}${user.profileImage}`
               : "default-avatar.png"
           }
           alt="avatar"

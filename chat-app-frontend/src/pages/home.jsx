@@ -38,7 +38,7 @@ const Home = () => {
       console.log("profile-updated received:", userId, avatar);
       setUsers((prev) =>
         prev.map((u) =>
-          u._id === userId ? { ...u, profileImage: profileImage } : u
+          u._id === userId ? { ...u, profileImage: avatar } : u
         )
       );
     };
@@ -82,8 +82,8 @@ const Home = () => {
     localStorage.clear();
 
     socket.disconnect();
-    navigate("/login");
-    // window.location.href = "login";
+    // navigate("/login");
+    window.location.href = "login";
   };
 
   return (
