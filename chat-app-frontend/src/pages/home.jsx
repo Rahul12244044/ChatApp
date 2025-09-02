@@ -38,7 +38,7 @@ const Home = () => {
       console.log("profile-updated received:", userId, avatar);
       setUsers((prev) =>
         prev.map((u) =>
-          u._id === userId ? { ...u, profileImage: avatar } : u
+          u._id === userId ? { ...u, profileImage: profileImage } : u
         )
       );
     };

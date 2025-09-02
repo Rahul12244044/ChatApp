@@ -33,7 +33,7 @@ export const updateProfilePicture = async (req, res) => {
     const io = getSocketIO(); 
     io.emit("profile-updated", {
       userId: user._id.toString(),
-      avatar: imageUrl,
+      profileImage: imageUrl,
     });
 
    
