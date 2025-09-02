@@ -82,7 +82,8 @@ const Home = () => {
     localStorage.clear();
 
     socket.disconnect();
-     window.location.href = "/login";
+    navigate("/login");
+    // window.location.href = "/login";
   };
 
   return (
