@@ -43,6 +43,7 @@ const ChatBox = ({ user }) => {
   };
 
   const handleDeleteMessage = async (messageId) => {
+    console.log("messageId: "+messageId);
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}api/messages/${messageId}`, {
         headers: { Authorization: `Bearer ${token}` },
