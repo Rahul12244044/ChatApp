@@ -144,54 +144,41 @@ const ChatBox = ({ user }) => {
     }
   }, [user._id, isSelfChat, loggedInUser._id, token]);
 
-  const handleSend = async () => {
-  if ((!newMsg.trim() && !selectedFile) || isSelfChat) return;
-  let fileUrl = null;
+  // when user sends
+const handleSendMessage = () => {
+  if (!newMsg.trim()) return;
 
-  if (selectedFile) {
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}api/upload/file`, formData);
-      fileUrl = res.data.fileUrl;
-    } catch (err) {
-      console.error("File upload failed:", err);
-      return;
-    }
-  }
-
-  const messageData = {
-    to: user._id,
-    from: loggedInUser._id,
-    content: newMsg,
-    timestamp: Date.now(),
-    seen: false,
-    file: fileUrl,
+  const pendingMessage = {
+    text: newMsg,
+    senderId: user._id,
+    createdAt: new Date().toISOString(),
+    isPending: true, // mark as waiting for server confirmation
   };
 
-  // ✅ Update sender's UI immediately
-  setMessages((prev) => [...prev, messageData]);
+  // add to UI immediately
+  setMessages((prev) => [...prev, pendingMessage]);
 
-  // Clear input & file
+  // send to server
+  socket.emit("send_message", pendingMessage);
+
   setNewMsg("");
-  setSelectedFile(null);
-  socket.emit("stop-typing", { to: user._id, from: loggedInUser._id });
-
-  // ✅ Emit via socket
-  socket.emit("send-msg", messageData);
-
-  try {
-    await axios.post(
-      `${import.meta.env.VITE_API_URL}api/messages`,
-      { receiver: user._id, content: newMsg, file: fileUrl },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-  } catch (err) {
-    console.error("Error sending message:", err);
-  }
 };
 
+// listen for server messages
+useEffect(() => {
+  socket.on("receive_message", (msg) => {
+    setMessages((prev) => {
+      // optional: prevent duplicate by checking pendingMessage
+      const exists = prev.some(
+        (m) => m.text === msg.text && m.senderId === msg.senderId
+      );
+      if (exists) return prev;
+      return [...prev, msg];
+    });
+  });
+
+  return () => socket.off("receive_message");
+}, []);
 
 
   const handleInputChange = (e) => {
