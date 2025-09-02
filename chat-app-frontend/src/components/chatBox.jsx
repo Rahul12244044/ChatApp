@@ -169,8 +169,8 @@ const ChatBox = ({ user }) => {
     file: fileUrl,
   };
 
-  // ✅ Update sender's chat immediately
-  // setMessages((prev) => [...prev, messageData]);
+  // ✅ Update sender's UI immediately
+  setMessages((prev) => [...prev, messageData]);
 
   // Clear input & file
   setNewMsg("");
@@ -190,6 +190,7 @@ const ChatBox = ({ user }) => {
     console.error("Error sending message:", err);
   }
 };
+
 
 
   const handleInputChange = (e) => {
