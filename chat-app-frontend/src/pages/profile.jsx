@@ -65,7 +65,7 @@ const Profile = () => {
   };
 
   const avatarUrl = loggedInUser?.avatar
-    ? `${import.meta.env.VITE_API_URL}/${loggedInUser.avatar}`
+    ? `${import.meta.env.VITE_API_URL}${loggedInUser.avatar}`
     : "/default-avatar.png";
     console.log("profile Url: ");
 
