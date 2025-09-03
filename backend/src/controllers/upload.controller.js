@@ -29,7 +29,7 @@ export const updateProfilePicture = async (req, res) => {
       fs.unlinkSync(`uploads/${path.basename(user.profileImage)}`);
     }
 
-    user.profileImage = imageUrl;
+    user.avatar = imageUrl;
     console.log("after update: ");
     console.log(user);
     await user.save();
@@ -45,7 +45,7 @@ export const updateProfilePicture = async (req, res) => {
 
     return res.status(200).json({
       msg: "Profile picture updated successfully.",
-      imageUrl,
+      avatar:imageUrl,
       user: safeUser,
     });
   } catch (err) {
