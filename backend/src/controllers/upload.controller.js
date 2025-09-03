@@ -17,6 +17,8 @@ export const updateProfilePicture = async (req, res) => {
     const imageUrl = `/uploads/${file.filename}`;
 
     const user = await userModel.findById(userId);
+    console.log("user: ");
+    console.log(user);
     if (!user) {
       fs.unlinkSync(file.path); 
       return res.status(404).json({ msg: "User not found." });
@@ -28,6 +30,8 @@ export const updateProfilePicture = async (req, res) => {
     }
 
     user.profileImage = imageUrl;
+    console.log("after update: ");
+    console.log(user);
     await user.save();
 
     const io = getSocketIO(); 
