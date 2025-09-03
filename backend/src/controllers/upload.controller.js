@@ -14,7 +14,7 @@ export const updateProfilePicture = async (req, res) => {
       return res.status(400).json({ msg: "No file uploaded." });
     }
 
-    const imageUrl = `/uploads/${file.filename}`;
+    const imageUrl = `uploads/${file.filename}`;
 
     const user = await userModel.findById(userId);
     console.log("user: ");
