@@ -81,45 +81,54 @@ const Home = () => {
   };
 
   // Add friend
-  const addFriend = async (userId) => {
-    try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}api/users/friends/add/${userId}`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+ const addFriend = async (userId) => {
+  // ✅ update UI first
+  setUsers((prev) =>
+    prev.map((u) => (u._id === userId ? { ...u, isFriend: true } : u))
+  );
+  const newFriend = users.find((u) => u._id === userId);
+  setFriends((prev) => [...prev, newFriend]);
 
-      setUsers((prev) =>
-        prev.map((u) =>
-          u._id === userId ? { ...u, isFriend: true } : u
-        )
-      );
-      const newFriend = users.find((u) => u._id === userId);
-      setFriends([...friends, newFriend]);
-    } catch (err) {
-      console.error("Error adding friend:", err);
-    }
-  };
-
+  try {
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}api/users/friends/add/${userId}`,
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (err) {
+    console.error("Error adding friend:", err);
+    // ❌ rollback if failed
+    setUsers((prev) =>
+      prev.map((u) => (u._id === userId ? { ...u, isFriend: false } : u))
+    );
+    setFriends((prev) => prev.filter((f) => f._id !== userId));
+  }
+};
   // Remove friend
-  const removeFriend = async (userId) => {
-    try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_URL}api/users/friends/remove/${userId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+const removeFriend = async (userId) => {
+  // ✅ update UI first
+  setUsers((prev) =>
+    prev.map((u) => (u._id === userId ? { ...u, isFriend: false } : u))
+  );
+  setFriends((prev) => prev.filter((f) => f._id !== userId));
 
-      setUsers((prev) =>
-        prev.map((u) =>
-          u._id === userId ? { ...u, isFriend: false } : u
-        )
-      );
-      setFriends(friends.filter((f) => f._id !== userId));
-    } catch (err) {
-      console.error("Error removing friend:", err);
+  try {
+    await axios.delete(
+      `${import.meta.env.VITE_API_URL}api/users/friends/remove/${userId}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (err) {
+    console.error("Error removing friend:", err);
+    // ❌ rollback if failed
+    setUsers((prev) =>
+      prev.map((u) => (u._id === userId ? { ...u, isFriend: true } : u))
+    );
+    const removedUser = users.find((u) => u._id === userId);
+    if (removedUser) {
+      setFriends((prev) => [...prev, removedUser]);
     }
-  };
-
+  }
+};
   // Decide which list to render
   const displayedUsers = viewMode === "all" ? users : friends;
 
