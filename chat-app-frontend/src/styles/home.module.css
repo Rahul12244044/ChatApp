@@ -4,6 +4,7 @@
   font-family: Arial, sans-serif;
 }
 
+/* Sidebar (user list) */
 .sidebar {
   width: 250px;
   padding: 1rem;
@@ -12,6 +13,80 @@
   border-right: 1px solid #ccc;
 }
 
+/* New section for filter buttons (My / All) */
+.userFilter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.filterBtn {
+  flex: 1;
+  padding: 6px 8px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #ddd;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.filterBtn:hover {
+  background: #ccc;
+}
+
+.filterBtn.active {
+  background: #4caf50;
+  color: white;
+}
+
+/* Each user card in sidebar */
+.userCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.userCard:hover {
+  background: #eaeaea;
+}
+
+.userCard.online {
+  border-left: 4px solid #4caf50;
+}
+
+/* Friend action buttons (Add / Remove) */
+.friendBtn {
+  padding: 4px 6px;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.friendBtn:hover {
+  background: #0056b3;
+}
+
+.friendBtn.remove {
+  background: #ff4d4d;
+}
+
+.friendBtn.remove:hover {
+  background: #cc0000;
+}
+
+/* Chat area */
 .chatArea {
   flex: 1;
   padding: 1rem;
@@ -34,4 +109,115 @@
   color: #777;
   margin: auto;
   font-size: 1.2rem;
+}
+.userCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* <-- pushes name left, button right */
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  gap:18px;
+}
+
+.userCard:hover {
+  background: #eaeaea;
+}
+
+.userCard.online {
+  border-left: 4px solid #4caf50;
+}
+
+/* Username text */
+.userName {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Friend action buttons (Add / Remove) */
+
+
+.userRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* username left, button right */
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background: #fff;
+  transition: background 0.2s ease;
+  font-weight:600;
+}
+
+.userRow:hover {
+  background: #f8f8f8;
+}
+
+
+
+.friendBtn:hover {
+  background: #0056b3;
+}
+
+.friendBtn.remove {
+  background: #ff4d4d;
+}
+
+.friendBtn.remove:hover {
+  background: #cc0000;
+}
+.friendBtn {
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #eeeeef;  /* Blue for add */
+  color: white !important; 
+  transition: background 0.2s ease;
+}
+
+.friendBtn:hover {
+  background: #e7e7e7;
+}
+
+.friendBtn.remove {
+  background: #ededed;  /* Red for remove */
+  color: rgb(243, 243, 243);         /* <-- force white */
+}
+
+.friendBtn.remove:hover {
+  background: #dddddd;
+  color: white;         /* <-- keep white on hover */
+}
+.toggleBtns {
+  display: flex;
+  gap: 8px;               /* gap between All and My */
+  margin-bottom: 10px;    /* bottom margin */
+}
+
+.toggleBtns button {
+  flex: 1;                /* make both buttons equal width */
+  padding: 8px 0;         /* vertical padding, width handled by flex */
+  border: none;
+  border-radius: 6px;
+  height:40px;
+  cursor: pointer;
+  background: #e0e0e0;
+  color: #333;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.toggleBtns button:hover {
+  background: #d0d0d0;
+}
+
+.activeBtn {
+  background: #007bff !important;
+  color: white !important;
 }

@@ -20,11 +20,17 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     profileImage: {
-    type: String,
-    default: "", // Or a default placeholder image
-    }
+      type: String,
+      default: "", // Or a default placeholder image
+    },
+    friends: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ChatUser", // self-reference
+      },
+    ],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const userModel = mongoose.model("ChatUser", userSchema);

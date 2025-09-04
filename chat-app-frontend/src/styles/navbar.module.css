@@ -27,3 +27,6 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.userName{
+  font-weight:600;
+}
