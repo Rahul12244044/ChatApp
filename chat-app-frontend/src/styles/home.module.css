@@ -150,6 +150,7 @@
   background: #fff;
   transition: background 0.2s ease;
   font-weight:600;
+  gap:18px;
 }
 
 .userRow:hover {
