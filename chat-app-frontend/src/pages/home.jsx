@@ -71,7 +71,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, [token,loggedInUser]);
+  }, [token,loggedInUser._id]);
 
   const handleLogout = () => {
     sessionStorage.clear();
