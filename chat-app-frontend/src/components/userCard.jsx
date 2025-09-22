@@ -10,7 +10,7 @@ const UserCard = ({ user, isOnline, onClick }) => {
       <div className={styles.avatarWrapper}>
         {user?.profileImage ? (
           <img
-            src={`http://localhost:5000/${user.profileImage.replace(/^\//, "")}`}
+            src={`${import.meta.env.VITE_API_URL}/${user.profileImage.replace(/^\//, "")}`}
             alt="avatar"
             className={styles.avatar}
           />
