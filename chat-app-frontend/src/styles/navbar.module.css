@@ -1,6 +1,6 @@
 .navbar {
   height: 60px;
-  background-color: #0754ed;
+  background-color: #f2f2f2;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -10,7 +10,8 @@
 
 .left {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  color:green;
 }
 
 .right {
@@ -29,4 +30,6 @@
 }
 .userName{
   font-weight:600;
+  font-weight:bold;
+  color:green;
 }
