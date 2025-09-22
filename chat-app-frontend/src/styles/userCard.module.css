@@ -48,3 +48,28 @@
   color: rgb(69, 68, 68);
   margin-left:18px;
 }
+.avatarWrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarFallback {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
