@@ -1,21 +1,25 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Register from './pages/register.jsx';
 import Login from './pages/login.jsx';
 import Home from './pages/home.jsx';
 import Profile from "./pages/profile.jsx";
 
 const App = () => {
-  const [token, setToken] = useState(() => {
-    let sessionToken = sessionStorage.getItem("token");
+  const [token, setToken] = useState(null);
 
-    if (!sessionToken && localStorage.getItem("token")) {
-      sessionToken = localStorage.getItem("token");
-      sessionStorage.setItem("token", sessionToken);
-      sessionStorage.setItem("user", localStorage.getItem("user"));
-    }
-    return sessionToken;
-  });
+  useEffect(() => {
+    const sessionToken = sessionStorage.getItem("token");
+    setToken(sessionToken);
+  }, []); // runs when App mounts
+
+  useEffect(() => {
+    const syncToken = () => {
+      setToken(sessionStorage.getItem("token"));
+    };
+    window.addEventListener("storage", syncToken);
+    return () => window.removeEventListener("storage", syncToken);
+  }, []);
   console.log("token: ");
   return (
     <Routes>
@@ -23,6 +27,7 @@ const App = () => {
       <Route path="/register" element={token ? <Navigate to="/" /> : <Register />} />
       <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} />
       <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+      <Route path="/logout" element={<LogoutPage/>}/>
     </Routes>
   );
 };

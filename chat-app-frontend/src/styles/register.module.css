@@ -36,3 +36,12 @@
   cursor: pointer;
   border-radius: 4px;
 }
+.login{
+  font-weight:600;
+}
+.loginUnderLine{
+  color:blue;
+  text-decoration:underline blue;
+  cursor:pointer;
+  font-weight:600;
+}

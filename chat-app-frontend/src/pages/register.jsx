@@ -30,6 +30,7 @@ const Register = () => {
         <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
         <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
         <button type="submit">Register</button>
+        <p className={styles.login}>Click <Link to="/login" className={styles.loginUnderLine}>Login</Link></p>
       </form>
     </div>
   );

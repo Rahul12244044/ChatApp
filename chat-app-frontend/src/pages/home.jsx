@@ -78,6 +78,7 @@ const Home = () => {
     localStorage.clear();
     socket.disconnect();
     navigate("/login");
+    window.location.reload();
   };
 
   // Add friend
