@@ -4,6 +4,7 @@ import Register from './pages/register.jsx';
 import Login from './pages/login.jsx';
 import Home from './pages/home.jsx';
 import Profile from "./pages/profile.jsx";
+import LogoutPage from "./pages/comeAgain.jsx";
 
 const App = () => {
   const [token, setToken] = useState(null);
