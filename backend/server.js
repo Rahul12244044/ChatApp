@@ -29,7 +29,7 @@ app.use(cors({
 }));
 
 
-
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 const io = new Server(httpServer, {
   cors: {
     origin: allowedOrigins,

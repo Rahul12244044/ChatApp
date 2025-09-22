@@ -8,7 +8,7 @@ const UserCard = ({ user, isOnline, onClick }) => {
         <img
           src={
             user.profileImage
-              ? `${import.meta.env.VITE_API_URL}${user.profileImage}`
+              ? `${import.meta.env.VITE_API_URL}${user.profileImage.replace(/^\//, "")}`
               : "default-avatar.png"
           }
           alt="avatar"
