@@ -1,29 +1,34 @@
 import styles from "../styles/userCard.module.css";
 
 const UserCard = ({ user, isOnline, onClick }) => {
-  console.log("user: ");
+  const firstLetter = user?.username
+    ? user.username.charAt(0).toUpperCase()
+    : "U";
+
   return (
     <div className={styles.userCard} onClick={onClick}>
       <div className={styles.avatarWrapper}>
-        <img
-          src={
-            user.profileImage
-              ? `${import.meta.env.VITE_API_URL}${user.profileImage.replace(/^\//, "")}`
-              : "default-avatar.png"
-          }
-          alt="avatar"
-          className={styles.avatar}
-        />
+        {user?.profileImage ? (
+          <img
+            src={`http://localhost:5000/${user.profileImage.replace(/^\//, "")}`}
+            alt="avatar"
+            className={styles.avatar}
+          />
+        ) : (
+          <div className={styles.avatarFallback}>{firstLetter}</div>
+        )}
+
         <span
           className={`${styles.statusDot} ${
             isOnline ? styles.online : styles.offline
           }`}
         ></span>
       </div>
+
       <div className={styles.userInfo}>
         <span className={styles.username}>{user.username}</span>
-        
       </div>
+      <hr />
     </div>
   );
 };
