@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/login.module.css";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -60,6 +61,7 @@ const Login = () => {
           </div>
         )}
       </form>
+    <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };
