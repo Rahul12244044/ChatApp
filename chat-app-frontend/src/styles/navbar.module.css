@@ -1,38 +1,118 @@
 .navbar {
-  height: 60px;
-  background-color: #f2f2f2;
+  height: 64px;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .left {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.5rem;
-  color:green;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.left:hover {
+  transform: scale(1.05);
+  color: #e0e7ff;
+}
+
+.connect {
+  color: #fbbf24;
 }
 
 .right {
   display: flex;
-  gap: 15px;
+  gap: 18px;
   align-items: center;
 }
 
-.right button {
-  background-color: white;
-  color: #007bff;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.userName{
-  font-weight:600;
+.userName {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  color: #f3f4f6;
   font-weight:bold;
-  color:green;
 }
-.connect{
-  color:blue;
+
+/* Avatar Circle */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.right button {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.right button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+.right button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .left {
+    font-size: 1.2rem;
+  }
+
+  .right {
+    gap: 12px;
+  }
+
+  .right button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 10px;
+  }
+
+  .right {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
