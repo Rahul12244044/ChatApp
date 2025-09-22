@@ -37,15 +37,37 @@ const Login = () => {
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h2>Login</h2>
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-        <button type="submit">Login</button>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
         <p className={styles.link}>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
+
+        {/* Centered loader */}
+        {loading && (
+          <div className={styles.loaderOverlay}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
       </form>
     </div>
   );
 };
 
 export default Login;
+

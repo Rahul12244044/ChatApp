@@ -6,7 +6,7 @@ const LogoutPage = () => {
   return (
     <div className={styles.logoutContainer}>
       <h1>👋 Come Again!</h1>
-      <p>Thanks for using <span className={styles.loginLink}>TalkRandoms</span></p>
+      <p>Thanks for using <span className={styles.loginLink}>ARconnect</span></p>
       <Link to="/login" className={styles.loginLink}>
         Go to Login
       </Link>
