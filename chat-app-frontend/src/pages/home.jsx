@@ -77,7 +77,7 @@ const Home = () => {
     sessionStorage.clear();
     localStorage.clear();
     socket.disconnect();
-    navigate("/login");
+    navigate("/logout");
     window.location.reload();
   };
 
