@@ -4,8 +4,8 @@ import axios from "axios";
 import styles from "../styles/login.module.css";
 
 const Login = () => {
-  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL); // ✅ Add here
   const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) =>
