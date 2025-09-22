@@ -8,9 +8,9 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <div className={styles.left}>ARconnect</div>
+      <div className={styles.left}>AR<span className={styles.connect}>connect</span></div>
       <div className={styles.right}>
-        <span>{user?.username}</span>
+        <span className={styles.userName}>{user?.username}</span>
         <button onClick={() => navigate("/profile")}>Profile</button>
       </div>
     </div>
