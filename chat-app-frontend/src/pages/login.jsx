@@ -12,27 +12,21 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
-    console.log("handleSubmit: ");
-    console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
-  e.preventDefault();
-  try {
-    const res = await axios.post(`${import.meta.env.VITE_API_URL}api/user/login`, form, { withCredentials: true });
-    console.log(res);
-    sessionStorage.setItem("token", res.data.token);
-    sessionStorage.setItem("user", JSON.stringify(res.data.user));
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("user", JSON.stringify(res.data.user));
-    console.log("res: ");
-    console.log(res);
-    window.location.href = "/";
-  } catch (err) {
-    console.log(err);
-  }finally{
-    setLoading(false);
-  }
-};
-
-
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}api/user/login`, form, { withCredentials: true });
+      sessionStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      window.location.href = "/";
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -71,4 +65,3 @@ const Login = () => {
 };
 
 export default Login;
-
