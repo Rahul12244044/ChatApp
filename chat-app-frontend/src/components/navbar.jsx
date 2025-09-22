@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <div className={styles.left}>Chat App</div>
+      <div className={styles.left}>ARconnect</div>
       <div className={styles.right}>
         <span>{user?.username}</span>
         <button onClick={() => navigate("/profile")}>Profile</button>
