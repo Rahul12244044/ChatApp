@@ -357,3 +357,21 @@ video {
   margin-right: 10px;
   user-select: none;
 }
+.chatBox {
+  overflow-y: auto;         /* enable scroll */
+  scrollbar-width: none;    /* hide scrollbar (Firefox) */
+}
+
+.chatBox::-webkit-scrollbar {
+  width: 6px;               /* slim scrollbar */
+  transition: opacity 0.3s;
+}
+
+.chatBox::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
+
+.chatBox.hideScroll::-webkit-scrollbar {
+  display: none; /* Chrome/Edge/Safari */
+}
