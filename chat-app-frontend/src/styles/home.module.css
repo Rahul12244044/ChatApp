@@ -6,7 +6,7 @@
 
 /* Sidebar (user list) */
 .sidebar {
-  width: 250px;
+  width: 297px;
   padding: 1rem;
   background: #f1f1f1;
   overflow-y: auto;
@@ -52,6 +52,7 @@
   background: white;
   cursor: pointer;
   transition: background 0.2s ease;
+  width:299px;
 }
 
 .userCard:hover {
@@ -103,6 +104,7 @@
   cursor: pointer;
   width: 100%;
   border-radius: 6px;
+  /* padding-left:15px; */
 }
 
 .placeholder {
@@ -121,6 +123,7 @@
   cursor: pointer;
   transition: background 0.2s ease;
   gap:18px;
+  max-width:279px;
 }
 
 .userCard:hover {
@@ -150,7 +153,6 @@
   background: #fff;
   transition: background 0.2s ease;
   font-weight:600;
-  gap:18px;
 }
 
 .userRow:hover {

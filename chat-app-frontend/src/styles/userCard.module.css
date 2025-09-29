@@ -5,6 +5,7 @@
   cursor: pointer;
   gap: 10px;
   border-bottom: 1px solid #eee;
+  width:279px;
 }
 
 .avatarWrapper {
