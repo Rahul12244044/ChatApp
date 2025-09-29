@@ -1,42 +1,70 @@
 .logoutContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width:100vw;
-  background: linear-gradient(to right, #667eea, #764ba2);
-  color: white;
-  font-family: Arial, sans-serif;
+  width: 100vw;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Glassmorphism card */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2.5rem 3rem;
+  border-radius: 16px;
   text-align: center;
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.6s ease-in-out;
 }
 
-.logoutContainer h1 {
+.card h1 {
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
-.logoutContainer p {
+.card p {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #f1f1f1;
 }
 
 .appName {
-  font-weight: bold;
+  font-weight: 700;
   color: #ffd700;
 }
 
+/* Stylish button */
 .loginLink {
-  background: white;
-  color: #764ba2;
-  padding: 10px 20px;
-  border-radius: 25px;
+  display: inline-block;
+  background: linear-gradient(90deg, #ffd700, #ffb400);
+  color: #333;
+  padding: 12px 28px;
+  border-radius: 30px;
   text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .loginLink:hover {
-  background: #ffd700;
-  color: #333;
+  background: linear-gradient(90deg, #ffcd00, #ffc107);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
