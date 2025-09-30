@@ -72,8 +72,9 @@ const Profile = () => {
   return (
     
     <div className={styles.profile}>
-      <h2>Your Profile</h2>
+
       <div className={styles.profileCard}>
+        <h2>Your Profile</h2>
         <img
           src={avatarUrl}
           alt="Profile"
