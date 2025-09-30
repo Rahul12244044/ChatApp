@@ -66,7 +66,7 @@ const Profile = () => {
 
   const avatarUrl = loggedInUser?.avatar
     ? `${import.meta.env.VITE_API_URL}${loggedInUser.avatar}`
-    : "/default-avatar.png";
+    : "https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-9ae8-61fa-b77e-5d940b870ffb/raw?se=2025-09-30T06%3A26%3A55Z&sp=r&sv=2024-08-04&sr=b&scid=e03de3a9-8646-537c-99fe-e1b78adbcf56&skoid=8cb40e9f-389f-4cf6-afaa-e5bd4c7fd98c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-29T23%3A22%3A02Z&ske=2025-09-30T23%3A22%3A02Z&sks=b&skv=2024-08-04&sig=Cjfp0cU5Vgm%2BOIjxYhZdTufGJWKCr0QySH3HnGC2BbM%3D";
     console.log("profile Url: ");
 
   return (
@@ -75,7 +75,7 @@ const Profile = () => {
       <h2>Your Profile</h2>
       <div className={styles.profileCard}>
         <img
-          src={preview || avatarUrl}
+          src={avatarUrl}
           alt="Profile"
           className={styles.avatar}
         />

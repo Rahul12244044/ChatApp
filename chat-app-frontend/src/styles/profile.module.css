@@ -1,74 +1,94 @@
 .profile {
-  height: 100vh; /* Full viewport height */
-  width:100vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction:column;
   justify-content: center;
   align-items: center;
-}
-.profileCard {
-  width: 550px;
-  padding: 1.5rem;
-  border-radius: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.profileCard {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.profileCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.12);
+}
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid #007bff;
+  padding: 3px;
+  background: #f9f9f9;
   margin-bottom: 1rem;
-  border: 2px solid #ccc;
+  transition: transform 0.3s ease;
 }
-.uploadSection{
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  gap:20px;
-  /* border:2px solid black; */
+
+.avatar:hover {
+  transform: scale(1.05);
 }
-.inputArea{
-  /* border:2px solid black; */
-  margin:auto;
+
+.profileCard p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #444;
 }
-.uploadForm {
-  margin-top: 1rem;
+
+.profileCard strong {
+  color: #222;
+}
+
+.uploadSection {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 15px;
 }
 
-.uploadForm input[type="file"] {
-  padding: 0.5rem;
-}
-
-.uploadForm button {
-  padding: 0.5rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.uploadForm button:disabled {
-  background-color: gray;
-}
 .hiddenInput {
   display: none;
-  width:20px;
-  /* border:2px solid black; */
 }
 
 .attachmentIcon {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  margin-right: 10px;
-  user-select: none;
-  width:40px;
-  /* border:2px solid black; */
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.attachmentIcon:hover {
+  color: #007bff;
+}
+
+.uploadSection button {
+  padding: 0.7rem 1.4rem;
+  background: #007bff;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.uploadSection button:hover {
+  background: #0056b3;
+}
+
+.uploadSection button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
